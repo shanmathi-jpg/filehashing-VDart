@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Uploaded Files</title>
+</head>
+<body>
+    <h2>Files uploaded by {{ username }}</h2>
+    <ul>
+    {% for f in files %}
+        <li>
+            {{ f.filename }} (uploaded on {{ f.upload_time.strftime('%Y-%m-%d %H:%M:%S') }}) -
+            <a href="/download/{{ f.id }}">⬇️ Download</a> |
+            <a href="/view/{{ f.id }}">👁 View</a> |
+            <a href="/delete/{{ f.id }}" onclick="return confirm('Are you sure you want to delete this file?')">🗑 Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <br>
+    <a href="/">Upload more</a> | <a href="/logout">Logout</a>
+</body>
+</html>
