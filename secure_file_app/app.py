@@ -52,7 +52,9 @@ def register():
         db.add(new_user)
         db.commit()
         db.close()
-        return redirect(url_for('login'))
+
+        # ✅ Pass username to login form
+        return redirect(url_for('login', username=username))
 
     return render_template('register.html')
 
@@ -75,7 +77,9 @@ def login():
             return redirect(url_for('home'))
         return "Invalid username or password. <a href='/login'>Try again</a>"
 
-    return render_template('login.html')
+    # ✅ Get username from query string if available
+    pre_username = request.args.get('username', '')
+    return render_template('login.html', pre_username=pre_username)
 
 # ----------------------
 # 🚪 Logout
@@ -168,9 +172,9 @@ def view_file(file_id):
 
     try:
         decrypted_data = decrypt_bytes(file_record.data)
-        print(f"[DEBUG] Raw decrypted bytes: {repr(decrypted_data[:100])}...")  # show first 100 bytes
+        print(f"[DEBUG] Raw decrypted bytes: {repr(decrypted_data[:100])}...")
         text_content = decrypted_data.decode('utf-8', errors='replace').strip()
-        print(f"[DEBUG] Decoded text content: {repr(text_content[:100])}...")  # show first 100 characters
+        print(f"[DEBUG] Decoded text content: {repr(text_content[:100])}...")
 
         if not text_content:
             return render_template('view.html', filename=file_record.filename,
