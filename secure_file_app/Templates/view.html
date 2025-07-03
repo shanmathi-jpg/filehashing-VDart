@@ -1,12 +1,13 @@
-<!-- templates/view.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ filename }}</title>
+    <title>View File</title>
 </head>
 <body>
-    <h2>Decrypted Text of {{ filename }}</h2>
-    <pre>{{ content }}</pre>
-    <a href="/files">Back to files</a>
+    <h2>📄 File: {{ filename }}</h2>
+    <pre style="white-space: pre-wrap;">{{ content }}</pre>
+    <br>
+    <a href="/files">⬅ Back to Files</a> |
+    <a href="/logout">🚪 Logout</a>
 </body>
 </html>

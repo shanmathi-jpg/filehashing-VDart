@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome Admin {{ username }}</h2>
+
+    <h3>📄 All Uploaded Files</h3>
+    <ul>
+        {% for f in files %}
+            <li>
+                {{ f.owner.username }} - {{ f.filename }} ({{ f.upload_time.strftime('%Y-%m-%d %H:%M:%S') }})
+                <a href="/admin/view/{{ f.id }}">👁 View</a> |
+                <a href="/admin/download/{{ f.id }}">⬇ Download</a> |
+                <a href="/admin/delete/{{ f.id }}" onclick="return confirm('Delete this file?')">🗑 Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>👥 User Activity</h3>
+    <ul>
+        {% for u in users %}
+            <li>{{ u.username }} -
+                Last Login: {{ u.last_login or 'Never' }} |
+                Last Logout: {{ u.last_logout or 'Never' }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <br><br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
