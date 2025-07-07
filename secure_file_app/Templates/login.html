@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- templates/login.html -->
 <!DOCTYPE html>
 <html>
@@ -20,5 +21,110 @@
     <br>
     <a href="{{ url_for('register') }}">Create an account</a> |
     <a href="{{ url_for('index') }}">⬅️ Back to Home</a>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login</title>
+<style>
+  /* Background with black and blue gradient */
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #00008b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Glassy form container */
+  form {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff;
+    text-shadow: 0 0 5px #00bfff;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 16px;
+    box-shadow: inset 0 0 5px #00bfff;
+    transition: background 0.3s ease;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="password"]::placeholder {
+    color: #c0c0c0;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+
+  input[type="submit"] {
+    background: #00bfff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00bfff;
+    transition: background 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background: #009acd;
+  }
+
+  a {
+    color: #00bfff;
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <form method="POST">
+    <h2>Login</h2>
+    <input name="username" type="text" placeholder="Username" required />
+    <input name="password" type="password" placeholder="Password" required />
+    <input type="submit" value="Login" />
+    <a href="/register">Create new account</a>
+  </form>
+>>>>>>> 9d3f6e1e1d50d75cace8122f98e4f3b6d2bc2299
 </body>
 </html>
