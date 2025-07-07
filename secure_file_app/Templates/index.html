@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Secure File App</title>
+</head>
+<body>
+    <h2>Welcome to Secure File Encryption System</h2>
+    <p>Please choose your role to continue:</p>
+
+    <!-- User Login -->
+    <form action="{{ url_for('login') }}" method="get" style="margin-bottom: 10px;">
+        <button type="submit">User Login</button>
+    </form>
+
+    <!-- Admin Login -->
+    <form action="{{ url_for('admin_login') }}" method="get">
+        <button type="submit">Admin Login</button>
+    </form>
+</body>
+</html>

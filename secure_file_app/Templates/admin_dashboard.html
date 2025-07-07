@@ -1,0 +1,45 @@
+<!-- templates/admin_dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, Admin: {{ username }}</h2>
+
+    <h3>All Users</h3>
+    <ul>
+        {% for user in users %}
+            <li>
+                {{ user.username }} |
+                Last Login: {{ user.last_login if user.last_login else 'Never' }} |
+                Last Logout: {{ user.last_logout if user.last_logout else 'Never' }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>All Uploaded Files</h3>
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Filename</th>
+            <th>Uploaded Time</th>
+            <th>Actions</th>
+        </tr>
+        {% for file in files %}
+        <tr>
+            <td>{{ file.owner.username }}</td>
+            <td>{{ file.filename }}</td>
+            <td>{{ file.upload_time }}</td>
+            <td>
+                <a href="{{ url_for('admin_view_file', file_id=file.id) }}">View</a> |
+                <a href="{{ url_for('admin_download', file_id=file.id) }}">Download</a> |
+                <a href="{{ url_for('admin_delete_file', file_id=file.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>
