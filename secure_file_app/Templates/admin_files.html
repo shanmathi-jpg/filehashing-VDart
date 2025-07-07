@@ -4,31 +4,36 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <h2>Welcome Admin {{ username }}</h2>
-
-    <h3>📄 All Uploaded Files</h3>
-    <ul>
-        {% for f in files %}
-            <li>
-                {{ f.owner.username }} - {{ f.filename }} ({{ f.upload_time.strftime('%Y-%m-%d %H:%M:%S') }})
-                <a href="/admin/view/{{ f.id }}">👁 View</a> |
-                <a href="/admin/download/{{ f.id }}">⬇ Download</a> |
-                <a href="/admin/delete/{{ f.id }}" onclick="return confirm('Delete this file?')">🗑 Delete</a>
-            </li>
+    <h1>Admin Dashboard - Welcome, {{ username }}</h1>
+    <h2>All Uploaded Files</h2>
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Filename</th>
+            <th>Uploaded At</th>
+            <th>Actions</th>
+        </tr>
+        {% for file in files %}
+        <tr>
+            <td>{{ file.owner.username }}</td>
+            <td>{{ file.filename }}</td>
+            <td>{{ file.upload_time }}</td>
+            <td>
+                <a href="{{ url_for('admin_view_file', file_id=file.id) }}">View</a> |
+                <a href="{{ url_for('admin_download', file_id=file.id) }}">Download</a> |
+                <a href="{{ url_for('admin_delete_file', file_id=file.id) }}">Delete</a>
+            </td>
+        </tr>
         {% endfor %}
+    </table>
+
+    <h2>Login Activity</h2>
+    <ul>
+    {% for user in users %}
+        <li>{{ user.username }} - Login: {{ user.last_login }}, Logout: {{ user.last_logout }}</li>
+    {% endfor %}
     </ul>
 
-    <h3>👥 User Activity</h3>
-    <ul>
-        {% for u in users %}
-            <li>{{ u.username }} -
-                Last Login: {{ u.last_login or 'Never' }} |
-                Last Logout: {{ u.last_logout or 'Never' }}
-            </li>
-        {% endfor %}
-    </ul>
-
-    <br><br>
-    <a href="/logout">Logout</a>
+    <br><a href="/logout">Logout</a>
 </body>
 </html>

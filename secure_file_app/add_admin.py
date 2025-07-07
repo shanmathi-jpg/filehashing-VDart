@@ -15,4 +15,4 @@ db.add(admin_user)
 db.commit()
 db.close()
 
-print("✅ Admin user created successfully.")
+print("✅ Admin created successfully.")

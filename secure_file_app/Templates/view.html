@@ -1,13 +1,24 @@
+<!-- templates/view.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View File</title>
+    <title>View File - {{ filename }}</title>
 </head>
 <body>
-    <h2>📄 File: {{ filename }}</h2>
-    <pre style="white-space: pre-wrap;">{{ content }}</pre>
+    <h2>📄 {{ filename }}</h2>
+
+    {% if preview_url %}
+        <!-- PDF or Office file preview -->
+        <iframe src="{{ preview_url }}" width="100%" height="600px"></iframe>
+    {% elif content %}
+        <!-- Decrypted text preview -->
+        <pre style="white-space: pre-wrap;">{{ content }}</pre>
+    {% else %}
+        <p>❌ Unsupported file type for preview.</p>
+    {% endif %}
+
     <br>
-    <a href="/files">⬅ Back to Files</a> |
-    <a href="/logout">🚪 Logout</a>
+    <a href="{{ url_for('list_files') }}">⬅️ Back to Files</a> |
+    <a href="{{ url_for('home') }}">⬆️ Upload More</a>
 </body>
 </html>

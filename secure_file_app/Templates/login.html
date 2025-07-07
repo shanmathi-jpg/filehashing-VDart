@@ -1,17 +1,24 @@
-<!-- login.html -->
+<!-- templates/login.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+    <title>User Login</title>
 </head>
 <body>
-  <h2>Login</h2>
-  <form method="POST">
-    <input name="username" placeholder="Username" value="{{ pre_username }}" required><br><br>
-    <input name="password" type="password" placeholder="Password" required><br><br>
-    <input type="submit" value="Login">
-  </form>
-  <a href="/register">Create new account</a>
+    <h2>👤 User Login</h2>
+
+    <form method="POST" action="/login">
+        <label>Username:</label><br>
+        <input type="text" name="username" required value="{{ pre_username }}"><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required value="{{ pre_password }}"><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('register') }}">Create an account</a> |
+    <a href="{{ url_for('index') }}">⬅️ Back to Home</a>
 </body>
 </html>
-

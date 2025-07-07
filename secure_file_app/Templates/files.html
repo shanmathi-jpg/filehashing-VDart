@@ -1,20 +1,21 @@
+<!-- templates/files.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Files</title>
+    <title>Your Uploaded Files</title>
 </head>
 <body>
-    <h2>Welcome, {{ username }}</h2>
+    <h2>Welcome, {{ username }}!</h2>
     <h3>Your Uploaded Files</h3>
 
     {% if files %}
         <ul>
-        {% for f in files %}
+        {% for file in files %}
             <li>
-                {{ f.filename }} (uploaded on {{ f.upload_time.strftime('%Y-%m-%d %H:%M:%S') }})
-                - <a href="/view/{{ f.id }}">👁 View</a>
-                - <a href="/download/{{ f.id }}">⬇ Download</a>
-                - <a href="/delete/{{ f.id }}" onclick="return confirm('Delete this file?')">🗑 Delete</a>
+                {{ file.filename }} |
+                <a href="{{ url_for('view_file', file_id=file.id) }}">👁 View</a> |
+                <a href="{{ url_for('download', file_id=file.id) }}">⬇️ Download</a> |
+                <a href="{{ url_for('delete_file', file_id=file.id) }}" onclick="return confirm('Delete this file?')">🗑 Delete</a>
             </li>
         {% endfor %}
         </ul>
@@ -23,7 +24,7 @@
     {% endif %}
 
     <br>
-    <a href="/">⬆ Upload More</a> |
-    <a href="/logout">🚪 Logout</a>
+    <a href="{{ url_for('home') }}">⬆️ Upload More</a> |
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
 </body>
 </html>

@@ -1,12 +1,10 @@
 import os
+from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, String, LargeBinary, ForeignKey, DateTime, Boolean
 from sqlalchemy.orm import declarative_base, relationship
-from datetime import datetime
 
-# Initialize base for models
 Base = declarative_base()
 
-# User Table
 class User(Base):
     __tablename__ = 'users'
 
@@ -19,7 +17,6 @@ class User(Base):
 
     files = relationship("EncryptedFile", back_populates="owner")
 
-# Encrypted File Table
 class EncryptedFile(Base):
     __tablename__ = 'files'
 
@@ -31,6 +28,11 @@ class EncryptedFile(Base):
 
     owner = relationship("User", back_populates="files")
 
-# Create engine
+# Database connection setup
 db_path = os.path.abspath("files.db")
 engine = create_engine(f"sqlite:///{db_path}", echo=True)
+
+# Only create tables when running this file directly
+if __name__ == "__main__":
+    Base.metadata.create_all(engine)
+    print("✅ Database created successfully.")
